@@ -12,5 +12,8 @@
   "dependencies": {
     "astro": "^4.5.0",
     "nes.css": "^2.3.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.152.0"
   }
 }
