@@ -14,6 +14,9 @@
     "nes.css": "^2.3.0"
   },
   "devDependencies": {
-    "wrangler": "^4.152.0"
+    "wrangler": "4.150.0"
+  },
+  "overrides": {
+    "rollup": "4.62.3"
   }
 }

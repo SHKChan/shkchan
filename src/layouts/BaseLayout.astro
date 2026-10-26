@@ -6,13 +6,14 @@ interface Props {
   description?: string;
 }
 
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const { title = "shkchan's Vibe Gaming Lab", description = "Pixel gaming, game mechanics exploration, and tech essays" } = Astro.props;
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={`${base}/favicon.svg`} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -27,7 +28,7 @@ const { title = "shkchan's Vibe Gaming Lab", description = "Pixel gaming, game m
           <p style="margin: 0; font-size: 0.9rem; color: #aaa;">Vibe Gaming | Pixel Art | Full-Stack & C++ GUI Lab</p>
         </div>
         <nav class="nav-links">
-          <a href="/" class="nes-btn is-primary" style="font-size: 0.8rem;">Home</a>
+          <a href={`${base}/`} class="nes-btn is-primary" style="font-size: 0.8rem;">Home</a>
           <a href="https://github.com/shkchan" target="_blank" class="nes-btn is-dark" style="font-size: 0.8rem;">GitHub Profile</a>
         </nav>
       </header>
