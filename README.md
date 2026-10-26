@@ -9,7 +9,7 @@
 
 ---
 
-### 📜 Blog
+### 👋 About Me
 
 Hi, I'm **SHK Chan**, a software engineer based in Australia. I build full-stack web apps and C++ desktop software, and I tinker with computer vision and retro game mechanics. The blog is where I write up what I learn along the way.
 
