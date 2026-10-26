@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = "shkchan's Vibe Gaming Lab", description = "像素风游戏、游戏心得与开发随笔" } = Astro.props;
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <div class="container">
+      <header class="pixel-header">
+        <div>
+          <h1 class="pixel-font" style="font-size: 1.4rem; color: #92cc41; margin: 0 0 0.5rem 0;">
+            <i class="nes-icon controller is-medium"></i> shkchan.lab
+          </h1>
+          <p style="margin: 0; font-size: 0.9rem; color: #aaa;">Vibe Gaming | Pixel Art | Game Dev & Tech Takeaways</p>
+        </div>
+        <nav class="nav-links">
+          <a href="/" class="nes-btn is-primary" style="font-size: 0.8rem;">首页 / Home</a>
+          <a href="https://github.com/shkchan" target="_blank" class="nes-btn is-dark" style="font-size: 0.8rem;">GitHub Profile</a>
+        </nav>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 2px dashed #444; text-align: center; color: #777; font-size: 0.85rem;">
+        <p class="pixel-font" style="font-size: 0.7rem;">© {new Date().getFullYear()} shkchan • Powered by Astro & Cloudflare Pages</p>
+      </footer>
+    </div>
+  </body>
+</html>

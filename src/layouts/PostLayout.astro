@@ -1,0 +1,25 @@
+---
+import BaseLayout from './BaseLayout.astro';
+const { frontmatter } = Astro.props;
+---
+
+<BaseLayout title={`${frontmatter.title} | shkchan`}>
+  <article class="nes-container is-dark">
+    <div style="border-bottom: 2px dashed #444; padding-bottom: 1rem; margin-bottom: 1.5rem;">
+      <a href="/" class="nes-btn is-error" style="font-size: 0.7rem; margin-bottom: 1rem;"><< 返回列表</a>
+      <h1 style="color: #92cc41; margin: 0.5rem 0; font-size: 1.5rem;">{frontmatter.title}</h1>
+      <div style="font-size: 0.85rem; color: #aaa; display: flex; gap: 1rem; align-items: center;">
+        <span class="pixel-font">📅 {frontmatter.date}</span>
+        {frontmatter.category && <span>📁 {frontmatter.category}</span>}
+      </div>
+    </div>
+
+    <div class="content" style="line-height: 1.8; font-size: 0.95rem;">
+      <slot />
+    </div>
+
+    <div style="margin-top: 2.5rem; border-top: 2px dashed #444; padding-top: 1rem;">
+      <a href="/" class="nes-btn is-primary" style="font-size: 0.75rem;"><< 更多游戏随笔</a>
+    </div>
+  </article>
+</BaseLayout>
