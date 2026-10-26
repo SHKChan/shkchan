@@ -13,7 +13,7 @@ const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() 
       <i class="nes-bcrikko" style="transform: scale(1.3);"></i>
       <div>
         <p style="margin-bottom: 0.5rem; line-height: 1.6;">
-          欢迎来到我的个人站！这里记录了我的 <strong>Vibe Gaming</strong> 像素风游戏体验、独立游戏机制拆解，以及日常技术随笔。
+          Welcome! Here I share my <strong>Vibe Gaming</strong> experiences, retro game mechanics breakdowns, full-stack development notes, and C++/OpenCV image processing takeaways.
         </p>
         <span class="nes-badge"><span class="is-warning">Pixel Style</span></span>
         <span class="nes-badge"><span class="is-success">Cloudflare Pages</span></span>
@@ -24,7 +24,7 @@ const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() 
 
   <!-- Article Section -->
   <h2 class="pixel-font" style="font-size: 1.1rem; color: #92cc41; margin-bottom: 1.5rem;">
-    <i class="nes-icon trophy is-small"></i> 游戏心得 & 随笔列表 ({sortedPosts.length})
+    <i class="nes-icon trophy is-small"></i> Quest Log & Articles ({sortedPosts.length})
   </h2>
 
   <div class="posts-list">
@@ -48,7 +48,7 @@ const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() 
         )}
         
         <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 1rem;">
-          {post.frontmatter.description || post.frontmatter.excerpt || "点击阅读详细内容..."}
+          {post.frontmatter.description || post.frontmatter.excerpt || "Click to read full article..."}
         </p>
 
         <a href={post.url} class="nes-btn is-success" style="font-size: 0.75rem;">

@@ -1,17 +1,17 @@
 ---
 layout: '../../layouts/PostLayout.astro'
-title: "设计模式：工厂模式（Factory Pattern）在游戏开发中的应用"
+title: "Design Patterns: Factory Pattern in Game Architecture"
 date: "2022-09-14"
 tags: ["DesignPatterns", "Architecture", "CPP"]
 category: "Architecture"
-description: "探讨简单工厂、工厂方法与抽象工厂模式在游戏道具与 NPC 实例化中的设计落地。"
+description: "Applying Simple Factory, Factory Method, and Abstract Factory patterns for item spawning and NPC instantiation."
 ---
 
-## 💡 为什么游戏开发需要工厂模式？
+## 💡 Why Game Development Needs Factory Patterns
 
-在游戏场景中，不同怪物（Monster）、道具（Item）和武器（Weapon）的生成非常频繁。使用工厂模式可以将对象的创建过程与具体业务代码解耦。
+In game scenes, creating monsters, items, and projectiles happens constantly. Factory patterns decouple object instantiation from game loop logic.
 
-### 简单工厂（Simple Factory）
+### Simple Factory Example
 
 ```cpp
 class Enemy {
@@ -21,7 +21,7 @@ public:
 
 class Goblin : public Enemy {
 public:
-    void Spawn() override { /* 刷出哥布林 */ }
+    void Spawn() override { /* Spawn Goblin */ }
 };
 
 class EnemyFactory {
