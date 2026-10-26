@@ -1,10 +1,5 @@
 <div align="center">
-  <a href="https://www.vibe-game.com/"><img src="./player-card.svg?v=5" width="100%" alt="SHK Chan pixel player card. Click to play: vibe-game.com" /></a>
-  <p>
-    <a href="https://www.vibe-game.com/"><b>🎮 Play Games</b></a>
-    &nbsp;&nbsp;·&nbsp;&nbsp;
-    <a href="https://www.vibe-game.com/blog/"><b>📜 Tech Blog</b></a>
-  </p>
+  <a href="https://www.vibe-game.com/"><img src="./player-card.svg?v=6" width="100%" alt="SHK Chan pixel player card. Click to play: vibe-game.com" /></a>
 </div>
 
 ---
