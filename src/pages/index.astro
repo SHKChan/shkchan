@@ -1,8 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const posts = await Astro.glob('./posts/*.md');
-const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
-const categories = new Set(sortedPosts.map((post) => post.frontmatter.category).filter(Boolean));
+import PostList from '../components/PostList.astro';
+import { getPosts, groupBy, categoryUrl } from '../lib/posts';
+
+const posts = await getPosts();
+const categories = [...groupBy(posts, (post) => [post.data.category]).values()].sort(
+  (a, b) => b.posts.length - a.posts.length || a.name.localeCompare(b.name),
+);
 ---
 
 <BaseLayout>
@@ -13,10 +17,12 @@ const categories = new Set(sortedPosts.map((post) => post.frontmatter.category).
       Notes from the workbench: retro game mechanics, C++ desktop apps, real-time computer vision,
       and the full-stack plumbing that holds it all together.
     </p>
-    <div class="hero-stats pixel">
-      <span><b>{sortedPosts.length}</b> posts</span>
-      <span><b>{categories.size}</b> categories</span>
-    </div>
+    {posts.length > 0 && (
+      <div class="hero-stats pixel">
+        <span><b>{posts.length}</b> {posts.length === 1 ? 'post' : 'posts'}</span>
+        <span><b>{categories.length}</b> {categories.length === 1 ? 'category' : 'categories'}</span>
+      </div>
+    )}
     <p class="hero-cta">
       <a href="https://www.vibe-game.com/" class="btn">▶ Play my games</a>
     </p>
@@ -27,24 +33,13 @@ const categories = new Set(sortedPosts.map((post) => post.frontmatter.category).
     <small>Newest first</small>
   </h2>
 
-  <ul class="quest-list">
-    {sortedPosts.map((post) => (
-      <li>
-        <a href={post.url} class="quest panel">
-          <div class="quest-meta pixel">
-            <time datetime={post.frontmatter.date}>{post.frontmatter.date}</time>
-            {post.frontmatter.category && <span class="cat">{post.frontmatter.category}</span>}
-          </div>
-          <h2>{post.frontmatter.title}</h2>
-          {post.frontmatter.description && <p>{post.frontmatter.description}</p>}
-          <div class="quest-foot">
-            <div class="tags">
-              {post.frontmatter.tags?.map((tag: string) => <span class="chip">#{tag}</span>)}
-            </div>
-            <span class="quest-go pixel">Read ▶</span>
-          </div>
-        </a>
-      </li>
-    ))}
-  </ul>
+  {categories.length > 1 && (
+    <nav class="filters" aria-label="Categories">
+      {categories.map(({ name, posts }) => (
+        <a href={categoryUrl(name)} class="chip">{name} <b>{posts.length}</b></a>
+      ))}
+    </nav>
+  )}
+
+  <PostList posts={posts} />
 </BaseLayout>

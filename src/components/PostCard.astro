@@ -1,0 +1,27 @@
+---
+import { type Post, formatDate, postUrl, categoryUrl, tagUrl, readingMinutes } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, date, category, tags, draft } = post.data;
+---
+
+<li class="quest panel">
+  <div class="quest-meta pixel">
+    <time datetime={date.toISOString()}>{formatDate(date)}</time>
+    <a href={categoryUrl(category)} class="cat">{category}</a>
+    <span>{readingMinutes(post.body)} min</span>
+    {draft && <span class="draft">Draft</span>}
+  </div>
+  <h2><a href={postUrl(post)} class="quest-link">{title}</a></h2>
+  <p>{description}</p>
+  <div class="quest-foot">
+    <div class="tags">
+      {tags.map((tag) => <a href={tagUrl(tag)} class="chip">#{tag}</a>)}
+    </div>
+    <span class="quest-go pixel" aria-hidden="true">Read ▶</span>
+  </div>
+</li>

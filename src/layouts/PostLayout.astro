@@ -1,19 +1,27 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-const { frontmatter } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+import { type Post, base, formatDate, categoryUrl, tagUrl, readingMinutes } from '../lib/posts';
+
+interface Props {
+  post: Post;
+}
+
+const { post } = Astro.props;
+const { title, description, date, updated, category, tags } = post.data;
 ---
 
-<BaseLayout title={`${frontmatter.title} · SHK Chan`} description={frontmatter.description}>
+<BaseLayout title={`${title} · SHK Chan`} description={description} keywords={[category, ...tags]}>
   <article>
     <header class="post-head">
       <a href={`${base}/`} class="back pixel">◀ Back to quest log</a>
       <div class="quest-meta pixel">
-        <time datetime={frontmatter.date}>{frontmatter.date}</time>
-        {frontmatter.category && <span class="cat">{frontmatter.category}</span>}
+        <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        <a href={categoryUrl(category)} class="cat">{category}</a>
+        <span>{readingMinutes(post.body)} min read</span>
+        {updated && <span>Updated {formatDate(updated)}</span>}
       </div>
-      <h1>{frontmatter.title}</h1>
-      {frontmatter.description && <p class="lede">{frontmatter.description}</p>}
+      <h1>{title}</h1>
+      <p class="lede">{description}</p>
     </header>
 
     <div class="prose panel">
@@ -22,9 +30,9 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
     <footer class="post-foot">
       <a href={`${base}/`} class="btn btn-ghost">◀ All posts</a>
-      {frontmatter.tags && (
+      {tags.length > 0 && (
         <div class="tags">
-          {frontmatter.tags.map((tag: string) => <span class="chip">#{tag}</span>)}
+          {tags.map((tag) => <a href={tagUrl(tag)} class="chip">#{tag}</a>)}
         </div>
       )}
     </footer>

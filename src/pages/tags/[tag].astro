@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostList from '../../components/PostList.astro';
+import { getPosts, groupBy, base, type Post } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const groups = groupBy(await getPosts(), (post) => post.data.tags);
+  return [...groups].map(([slug, { name, posts }]) => ({ params: { tag: slug }, props: { name, posts } }));
+}
+
+const { name, posts } = Astro.props as { name: string; posts: Post[] };
+---
+
+<BaseLayout title={`#${name} · SHK Chan`} description={`Posts tagged ${name}.`} keywords={[name]}>
+  <header class="page-head">
+    <a href={`${base}/`} class="back pixel">◀ Back to quest log</a>
+    <span class="label">Keyword</span>
+    <h1 class="pixel">#{name}</h1>
+    <p>{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
+  </header>
+  <PostList posts={posts} />
+</BaseLayout>
