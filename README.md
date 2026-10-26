@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://github.com/SHKChan"><img src="./player-card.svg?v=8" width="100%" alt="SHK Chan pixel player card" /></a>
+  <a href="https://github.com/SHKChan"><img src="./player-card.svg?v=9" width="100%" alt="SHK Chan pixel player card" /></a>
   <p>
     <a href="https://www.vibe-game.com/"><b>🎮 Play Games</b></a>
     &nbsp;&nbsp;·&nbsp;&nbsp;
