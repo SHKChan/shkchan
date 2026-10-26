@@ -1,0 +1,177 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPosts, groupBy, base } from '../lib/posts';
+
+// Private publishing page. Protected by Cloudflare Access (/blog/admin*), not linked anywhere.
+const posts = await getPosts();
+const categories = [...groupBy(posts, (post) => [post.data.category]).values()].map((g) => g.name);
+const tags = [...groupBy(posts, (post) => post.data.tags).values()].map((g) => g.name);
+const today = new Date().toISOString().slice(0, 10);
+---
+
+<BaseLayout title="Publish · SHK Chan" noindex>
+  <header class="page-head">
+    <span class="label">Admin</span>
+    <h1 class="pixel">New post</h1>
+    <p id="who">Checking sign-in…</p>
+  </header>
+
+  <form id="post-form" class="admin panel" data-api={`${base}/api/posts`} data-whoami={`${base}/api/whoami`}>
+    <label>
+      <span class="pixel">Title</span>
+      <input name="title" required maxlength="200" autocomplete="off" />
+    </label>
+    <label>
+      <span class="pixel">What is it about?</span>
+      <input name="description" required maxlength="300" autocomplete="off"
+        placeholder="One sentence, shown on the post card and in search results" />
+    </label>
+
+    <div class="admin-row">
+      <label>
+        <span class="pixel">Category</span>
+        <input name="category" required maxlength="50" list="categories" autocomplete="off" placeholder="e.g. Gaming" />
+        <datalist id="categories">{categories.map((c) => <option value={c} />)}</datalist>
+      </label>
+      <label>
+        <span class="pixel">Date</span>
+        <input name="date" type="date" required value={today} />
+      </label>
+    </div>
+
+    <label>
+      <span class="pixel">Keywords</span>
+      <input name="tags" list="tags" autocomplete="off" placeholder="Comma separated, e.g. C++, OpenCV" />
+      <datalist id="tags">{tags.map((t) => <option value={t} />)}</datalist>
+    </label>
+
+    <label>
+      <span class="pixel">URL</span>
+      <span class="slug-field"><span>/blog/posts/</span><input name="slug" required maxlength="80" pattern="[a-z0-9]+(-[a-z0-9]+)*" autocomplete="off" /></span>
+      <small>Filled from the title. Lowercase letters, numbers and dashes only.</small>
+    </label>
+
+    <label>
+      <span class="pixel">Article (Markdown)</span>
+      <textarea name="body" required rows="18" spellcheck="true"
+        placeholder="Paste the article here. Use ## for section headings and ``` for code blocks."></textarea>
+    </label>
+
+    <label class="check">
+      <input type="checkbox" name="draft" />
+      <span>Save as draft (not shown on the live site)</span>
+    </label>
+
+    <div class="admin-actions">
+      <button type="button" class="btn btn-ghost" id="preview-btn">Preview .md</button>
+      <button type="submit" class="btn" id="publish-btn">▶ Publish</button>
+    </div>
+
+    <p id="status" class="admin-status" role="status" aria-live="polite"></p>
+    <pre id="preview" class="admin-preview" hidden></pre>
+  </form>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('post-form') as HTMLFormElement;
+  const status = document.getElementById('status')!;
+  const preview = document.getElementById('preview')!;
+  const who = document.getElementById('who')!;
+  const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement;
+  const DRAFT_KEY = 'admin-post-draft';
+
+  const slugify = (s: string) =>
+    s.toLowerCase().replace(/\+/g, 'p').replace(/#/g, 'sharp').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 80);
+
+  let slugTouched = false;
+  field('slug').addEventListener('input', () => (slugTouched = true));
+  field('title').addEventListener('input', () => {
+    if (!slugTouched) field('slug').value = slugify(field('title').value);
+  });
+
+  // Keep an unsent draft in this browser so a failed publish never loses the text.
+  const fields = ['title', 'description', 'category', 'date', 'tags', 'slug', 'body'];
+  try {
+    const saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || 'null');
+    if (saved) {
+      for (const f of fields) if (saved[f]) field(f).value = saved[f];
+      slugTouched = !!saved.slug;
+    }
+  } catch {}
+  form.addEventListener('input', () => {
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(Object.fromEntries(fields.map((f) => [f, field(f).value]))));
+    } catch {}
+  });
+
+  function payload(extra: Record<string, unknown> = {}) {
+    return {
+      title: field('title').value,
+      description: field('description').value,
+      category: field('category').value,
+      date: field('date').value,
+      tags: field('tags').value.split(',').map((t) => t.trim()).filter(Boolean),
+      slug: field('slug').value,
+      body: field('body').value,
+      draft: field('draft').checked,
+      ...extra,
+    };
+  }
+
+  function show(message: string, kind: 'ok' | 'error' | 'busy') {
+    status.className = `admin-status ${kind}`;
+    status.innerHTML = message;
+  }
+
+  async function send(extra: Record<string, unknown>) {
+    const res = await fetch(form.dataset.api!, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload(extra)),
+    });
+    const data = await res.json().catch(() => ({ error: `Server returned ${res.status}.` }));
+    return { res, data };
+  }
+
+  const escape = (s: string) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+
+  document.getElementById('preview-btn')!.addEventListener('click', async () => {
+    show('Building preview…', 'busy');
+    const { res, data } = await send({ dryRun: true });
+    if (!res.ok) return show(escape(data.error), 'error');
+    preview.textContent = data.markdown;
+    preview.hidden = false;
+    show('This is the file that will be committed.', 'ok');
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+    const button = document.getElementById('publish-btn') as HTMLButtonElement;
+    button.disabled = true;
+    show('Publishing…', 'busy');
+    try {
+      let { res, data } = await send({});
+      if (res.status === 409 && confirm(`${data.error}\nReplace it?`)) {
+        ({ res, data } = await send({ overwrite: true }));
+      }
+      if (!res.ok) return show(escape(data.error), 'error');
+      try { localStorage.removeItem(DRAFT_KEY); } catch {}
+      show(
+        `Committed. ${data.draft ? 'Saved as a draft.' : `It will be live in about 1–2 minutes at <a href="${escape(data.url)}">${escape(data.url)}</a>.`}` +
+          ` <a href="${escape(data.commit)}" target="_blank" rel="noopener">View commit</a>`,
+        'ok',
+      );
+    } catch {
+      show('Network error. Your text is kept in this browser; try again.', 'error');
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  fetch(form.dataset.whoami!, { credentials: 'same-origin' })
+    .then((r) => r.json())
+    .then((d) => (who.textContent = d.email ? `Signed in as ${d.email}` : d.error || 'Not signed in.'))
+    .catch(() => (who.textContent = 'Could not reach the publishing API.'));
+</script>

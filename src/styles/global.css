@@ -557,6 +557,107 @@ a.chip:hover {
   color: var(--muted);
 }
 
+/* ---------- Admin ---------- */
+
+.admin {
+  display: grid;
+  gap: 20px;
+  padding: 26px 28px;
+}
+.admin label {
+  display: grid;
+  gap: 8px;
+}
+.admin label > .pixel {
+  font-size: 9px;
+  color: var(--yellow);
+}
+.admin small {
+  color: var(--faint);
+  font-size: 13px;
+}
+.admin input:not([type='checkbox']),
+.admin textarea {
+  width: 100%;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--text);
+  background: var(--bg);
+  border: 3px solid var(--border);
+  border-radius: 0;
+}
+.admin textarea {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  resize: vertical;
+}
+.admin input:focus,
+.admin textarea:focus {
+  outline: none;
+  border-color: var(--green);
+}
+.admin-row {
+  display: grid;
+  grid-template-columns: 1fr 180px;
+  gap: 16px;
+}
+.slug-field {
+  display: flex;
+  align-items: stretch;
+}
+.slug-field > span {
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--faint);
+  background: var(--surface-2);
+  border: 3px solid var(--border);
+  border-right: 0;
+}
+.admin label.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+}
+.check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+}
+.admin-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.admin-status {
+  margin: 0;
+  min-height: 1.7em;
+}
+.admin-status.ok { color: var(--green); }
+.admin-status.error { color: var(--pink); }
+.admin-status.busy { color: var(--muted); }
+.admin-preview {
+  margin: 0;
+  padding: 16px 18px;
+  max-height: 420px;
+  overflow: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  white-space: pre-wrap;
+  color: var(--muted);
+  background: var(--bg);
+  border: 3px solid var(--border);
+}
+
 @media (max-width: 560px) {
   body {
     font-size: 16px;
@@ -569,6 +670,12 @@ a.chip:hover {
   }
   .quest {
     padding: 18px 16px 16px;
+  }
+  .admin {
+    padding: 20px 16px;
+  }
+  .admin-row {
+    grid-template-columns: 1fr;
   }
 }
 

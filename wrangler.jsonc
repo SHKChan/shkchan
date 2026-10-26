@@ -3,7 +3,19 @@
   // Must match the Worker name shown in the Cloudflare dashboard
   "name": "blog",
   "compatibility_date": "2026-10-01",
+  "main": "worker/index.ts",
   "assets": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // Only the publishing API runs Worker code; everything else is a static file
+    "run_worker_first": ["/blog/api/*"]
+  },
+  // Non-secret settings. Secrets (GITHUB_TOKEN, ACCESS_TEAM_DOMAIN, ACCESS_AUD, ALLOWED_EMAIL)
+  // are set in the dashboard: Worker "blog" -> Settings -> Variables and Secrets (type: Secret).
+  "vars": {
+    "GITHUB_REPO": "SHKChan/shkchan",
+    "GITHUB_BRANCH": "main",
+    "COMMITTER_NAME": "SHK Chan",
+    "COMMITTER_EMAIL": "42442323+SHKChan@users.noreply.github.com"
   }
 }

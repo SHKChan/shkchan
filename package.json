@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:worker": "esbuild worker/index.ts --bundle --format=esm --platform=neutral --log-level=warning --outfile=.wrangler/test/worker.mjs && node worker/worker.test.mjs"
   },
   "dependencies": {
     "astro": "^4.5.0"
