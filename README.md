@@ -10,7 +10,7 @@
 
 ---
 
-### 🕹️ About
+### 📜 Quest Log
 
 Hi, I'm **SHK Chan**, a software engineer based in Australia. I build full-stack web apps and C++ desktop software, and I tinker with computer vision and retro game mechanics. The blog is where I write up what I learn along the way.
 
@@ -22,14 +22,5 @@ Hi, I'm **SHK Chan**, a software engineer based in Australia. I build full-stack
 | **C++ Desktop GUI** | Qt, MFC, multi-threading, hardware integration |
 | **Computer Vision** | OpenCV, image processing, real-time inspection |
 | **Architecture** | Clean architecture, automated workflows, CI/CD |
-
-### 📜 Quest Log
-
-- [RPA Workflow Design: Resilience and Retry Strategies](https://www.vibe-game.com/blog/posts/rpa-takeaways)
-- [Real-Time Industrial Vision & Image Processing with OpenCV](https://www.vibe-game.com/blog/posts/opencv-vision)
-- [Tiny Tetris: Breakdown of Game Mechanics & Core Logic](https://www.vibe-game.com/blog/posts/tiny-tetris)
-- [Pythonic Code Style & Clean Code Practices](https://www.vibe-game.com/blog/posts/python-style)
-- [MFC Multi-threading & UI Thread Decoupling](https://www.vibe-game.com/blog/posts/mfc-threading)
-- [Design Patterns: Factory Pattern in Game Architecture](https://www.vibe-game.com/blog/posts/factory-mode)
 
 <sub>This repo is also the source of the blog: Astro, deployed as a Cloudflare Worker at <code>www.vibe-game.com/blog</code>.</sub>
