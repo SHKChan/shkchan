@@ -14,7 +14,6 @@
 @keyframes shoot{0%,45%{transform:translateX(0);opacity:1}60%{transform:translateX(250px);opacity:1}60.1%,84.9%{transform:translateX(250px);opacity:0}85%,100%{transform:translateX(0);opacity:1}}
 .sdrawn{animation:sdrawn 3.2s steps(1,end) infinite}.srest{opacity:0;animation:srest 3.2s steps(1,end) infinite}
 @keyframes sdrawn{0%{opacity:1}45%{opacity:0}85%{opacity:1}}@keyframes srest{0%{opacity:0}45%{opacity:1}85%{opacity:0}}
-@media (prefers-reduced-motion:reduce){.hero,.blink,.tw1,.tw2,.fly,.arrow,.sdrawn,.srest{animation:none}}
 </style>
 <g shape-rendering="crispEdges">
 <rect x="8" y="8" width="842" height="388" fill="#05060d"/>
