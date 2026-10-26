@@ -7,7 +7,7 @@ category: "Architecture"
 description: "Applying Simple Factory, Factory Method, and Abstract Factory patterns for item spawning and NPC instantiation."
 ---
 
-## 💡 Why Game Development Needs Factory Patterns
+## Why Game Development Needs Factory Patterns
 
 In game scenes, creating monsters, items, and projectiles happens constantly. Factory patterns decouple object instantiation from game loop logic.
 

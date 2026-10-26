@@ -1,32 +1,35 @@
-# 🎮 PLAYER CARD: SHK CHAN 🎮
-
 <div align="center">
-  <img src="./player-card.svg" width="100%" alt="SHK Chan JRPG Archer Player Card" />
+  <img src="./player-card.svg" width="100%" alt="SHK Chan pixel player card" />
+
+  <p>
+    <a href="https://www.vibe-game.com/blog/"><b>▶ Read the blog</b></a>
+    &nbsp;·&nbsp;
+    <a href="https://www.vibe-game.com/"><b>▶ Play my games</b></a>
+  </p>
 </div>
 
 ---
 
-### 🕹️ VIBE GAMING & BLOG PORTAL
-> 🌐 **Personal Website & Gaming Blog**: [https://shkchan.pages.dev](https://shkchan.pages.dev) *(Hosted on Cloudflare Pages)*
+### 🕹️ About
 
----
+Hi, I'm **SHK Chan**, a software engineer based in Australia. I build full-stack web apps and C++ desktop software, and I tinker with computer vision and retro game mechanics. The blog is where I write up what I learn along the way.
 
-### 🏹 DEV ATTRIBUTES & CORE QUESTS
+### 🧰 Skill Tree
 
-| Attribute | Level / Mastery | Focus Area & Technical Loadout |
-| :--- | :--- | :--- |
-| **DEX (Full-Stack Web)** | `██████████` 99 | **Node.js, Java (Spring Boot), Angular, TypeScript, RESTful APIs, Docker** |
-| **STR (GUI & C++ App)** | `█████████░` 95 | **C++ (Qt Framework, Legacy MFC Refactoring), Multi-threading, Hardware Driver Integration** |
-| **INT (Computer Vision)** | `█████████░` 93 | **OpenCV, Real-Time Industrial Inspection, Image Processing, Object Detection** |
-| **WIS (Architecture)** | `██████████` 98 | **Clean Architecture, Deterministic Automated Workflows, CI/CD Pipelines** |
+| Branch | Tools I reach for |
+| :--- | :--- |
+| **Full-Stack Web** | Node.js, Java (Spring Boot), Angular, TypeScript, REST APIs, Docker |
+| **C++ Desktop GUI** | Qt, MFC, multi-threading, hardware integration |
+| **Computer Vision** | OpenCV, image processing, real-time inspection |
+| **Architecture** | Clean architecture, automated workflows, CI/CD |
 
----
+### 📜 Quest Log
 
-### 📊 GITHUB QUEST STATS
+- [RPA Workflow Design: Resilience and Retry Strategies](https://www.vibe-game.com/blog/posts/rpa-takeaways)
+- [Real-Time Industrial Vision & Image Processing with OpenCV](https://www.vibe-game.com/blog/posts/opencv-vision)
+- [Tiny Tetris: Breakdown of Game Mechanics & Core Logic](https://www.vibe-game.com/blog/posts/tiny-tetris)
+- [Pythonic Code Style & Clean Code Practices](https://www.vibe-game.com/blog/posts/python-style)
+- [MFC Multi-threading & UI Thread Decoupling](https://www.vibe-game.com/blog/posts/mfc-threading)
+- [Design Patterns: Factory Pattern in Game Architecture](https://www.vibe-game.com/blog/posts/factory-mode)
 
-<div align="center">
-
-![shkchan's GitHub stats](https://github-readme-stats.vercel.app/api?username=shkchan&show_icons=true&theme=synthwave)
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=shkchan&layout=compact&theme=synthwave)
-
-</div>
+<sub>This repo is also the source of the blog: Astro, deployed as a Cloudflare Worker at <code>www.vibe-game.com/blog</code>.</sub>

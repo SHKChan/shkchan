@@ -7,7 +7,7 @@ category: "Engineering"
 description: "Adhering to PEP 8 guidelines, static type hints, and writing clean, readable Python code."
 ---
 
-## 🐍 Zen of Python Highlights
+## Zen of Python Highlights
 
 * Explicit is better than implicit.
 * Simple is better than complex.

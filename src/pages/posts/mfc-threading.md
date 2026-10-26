@@ -7,7 +7,7 @@ category: "Engineering"
 description: "Safe UI thread communication using PostMessage / SendMessage and worker thread management in Windows C++ GUI apps."
 ---
 
-## 📌 Golden Rule of GUI Threading
+## Golden Rule of GUI Threading
 
 In Windows GUI development, **never update UI components directly from background worker threads**.
 

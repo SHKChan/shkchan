@@ -7,7 +7,7 @@ category: "Vision"
 description: "Key techniques for high-speed multi-object detection, dynamic parts counting, and sub-pixel edge measurement."
 ---
 
-## 👁️ Industrial Machine Vision Pipeline
+## Industrial Machine Vision Pipeline
 
 High-speed assembly line sorting requires ultra-low latency image processing:
 
