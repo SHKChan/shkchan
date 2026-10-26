@@ -1407,8 +1407,8 @@
 <rect x="312" y="280" width="514" height="84" fill="#343a66"/>
 <rect x="316" y="284" width="506" height="76" fill="#0e0f1d"/>
 <rect x="320" y="288" width="498" height="68" fill="none" stroke="#1f2340" stroke-width="2"/>
-<text x="334" y="314" font-size="13" fill="#e9e7f5"><tspan fill="#7ee08a">&gt;</tspan> Notes on game mechanics, C++ desktop apps,</text>
-<text x="350" y="338" font-size="13" fill="#e9e7f5">real-time vision and full-stack plumbing.</text>
+<text x="334" y="314" font-size="13" fill="#e9e7f5"><tspan fill="#7ee08a">&gt;</tspan> Seasoned full-stack &amp; desktop GUI dev by day,</text>
+<text x="350" y="338" font-size="13" fill="#e9e7f5">vibe game builder by night.</text>
 <rect x="800" y="344" width="2" height="2" fill="#ffd45e" class="blink"/>
 <rect x="802" y="344" width="2" height="2" fill="#ffd45e" class="blink"/>
 <rect x="804" y="344" width="2" height="2" fill="#ffd45e" class="blink"/>

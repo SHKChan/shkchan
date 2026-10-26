@@ -1,10 +1,15 @@
 <div align="center">
-  <a href="https://www.vibe-game.com/"><img src="./player-card.svg?v=6" width="100%" alt="SHK Chan pixel player card. Click to play: vibe-game.com" /></a>
+  <a href="https://www.vibe-game.com/"><img src="./player-card.svg?v=7" width="100%" alt="SHK Chan pixel player card. Click to play: vibe-game.com" /></a>
+  <p>
+    <a href="https://www.vibe-game.com/"><b>🎮 Play Games</b></a>
+    &nbsp;&nbsp;·&nbsp;&nbsp;
+    <a href="https://www.vibe-game.com/blog/"><b>📜 Tech Blog</b></a>
+  </p>
 </div>
 
 ---
 
-### 📜 Quest Log
+### 📜 Blog
 
 Hi, I'm **SHK Chan**, a software engineer based in Australia. I build full-stack web apps and C++ desktop software, and I tinker with computer vision and retro game mechanics. The blog is where I write up what I learn along the way.
 
